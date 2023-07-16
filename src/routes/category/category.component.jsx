@@ -10,10 +10,12 @@ import { CategoryContainer, Title } from './category.styles';
 
 const Category = () => {
   const { category } = useParams();
-  const categoriesMap = useSelector(selectCategoriesMap);
+  console.log('rendering/re-rendering category component')
+  const categoriesMap = useSelector(selectCategoriesMap);//Everytime an action gets dispatched, all useSelectors runs but the respective components re-rendering depends on whether the previous state of the respective reducer is different or not if so then it does otherwise no.
   const [products, setProducts] = useState(categoriesMap[category]);
 
   useEffect(() => {
+    console.log('effect-fired calling set products');
     setProducts(categoriesMap[category]);
   }, [category, categoriesMap]);
 
